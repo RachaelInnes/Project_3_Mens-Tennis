@@ -1,0 +1,28 @@
+Mens_Tennis_Grand_Slam_Winner
+-
+TOURNAMENT_ID INT PK
+YEAR INT
+TOURNAMENT VARCHAR(20)
+WINNER VARCHAR(30)
+RUNNER-UP VARCHAR(30)
+WINNER_NATIONALITY VARCHAR(60) FK >- countries.nationality
+WINNER_ATP_RANKING INT
+RUNNER-UP_ATP_RANKING INT
+WINNER_LEFT_OR_RIGHT_HANDED VARCHAR(5)
+TOURNAMENT_SURFACE VARCHAR(30)
+WINNER_PRIZE INT
+
+countries
+-
+num_code INT
+alpha_2_code VARCHAR(2) FK - world_coordinates.Code
+alpha_3_code VARCHAR(3)
+en_short_name VARCHAR(60)
+nationality VARCHAR(60) PK
+
+world_coordinates
+-
+Code PK VARCHAR(2)
+Country VARCHAR(60)
+latitude DEC
+longitude DEC
