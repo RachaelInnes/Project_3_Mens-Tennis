@@ -97,72 +97,73 @@ function buildSunburstChart() {
 }
 
 // Function to build both charts
-function buildCharts(sample) {
+function buildbubleCharts(buble) {
     d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/updated_main_file.json").then((data) => {
-        let samples = data.samples;
+  
+      // Get the samples field and
+      let winner = data.WINNER;
+      
+      // Filter (with custom function) the samples for the object with the desired sample number
+      function matchId(choice) {
+      return choice.id == winner;
+      }  
+      //let sampleData = samples.filter(matchId)[0];
+      //console.log(sampleData);
+      
+      // Get the top 10 winners over the years
+      const frequencyMap = data.reduce((acc, obj) => {
+        const winnerforall = obj.WINNER;
+        acc[winnerforall] = (acc[winnerforall] || 0) + 1;
+        return acc;
+    }, {});
+  
+      sortedItems = Object.entries(frequencyMap).sort((a, b) => b[1] - a[1])
+  
+      let top10winner = sortedItems.slice(0, 10);
+      let Winnernames = [];
+      let Numberofwins = [];
+      top10winner.forEach(item => {
+        let Winnername = item[0];
+        let numberofwin = item[1];
+        Winnernames.push(Winnername);
+        Numberofwins.push(numberofwin);
+      });
 
-        function matchId(choice) {
-            return choice.id == sample;
-        }
-        let sampleData = samples.filter(matchId)[0];
-        console.log(sampleData);
-
-        let top10samplesValues = sampleData.sample_values.slice(0, 10).reverse();
-        let top10otuIds = sampleData.otu_ids.slice(0, 10);
-        let top10otuLabels = sampleData.otu_labels.slice(0, 10);
-
-        let trace2 = {
-            x: top10otuIds,
-            y: top10samplesValues,
-            text: top10otuLabels,
-            mode: 'markers',
-            marker: {
-                size: top10samplesValues,
-                color: top10otuIds,
-                colorscale: 'Viridis'
-            }
-        };
-
-        let bubbleData = [trace2];
-
-        let layout2 = {
-            title: "Bacteria Cultures Per Sample",
-            xaxis: { title: 'OTU ID' },
-            yaxis: { title: 'Number of Bacteria' },
-            margin: {
-                l: 50,
-                r: 5,
-                t: 100,
-                b: 100
-            }
-        };
-
-        Plotly.newPlot("bubble", bubbleData, layout2);
-
-        let trace1 = {
-            x: top10samplesValues,
-            y: top10otuIds.map(id => `OTU ${id}`),
-            text: top10otuLabels,
-            type: "bar",
-            orientation: "h"
-        };
-
-        let barData = [trace1];
-
-        let layout1 = {
-            title: "Top 10 Bacteria Cultures Found",
-            xaxis: { title: 'Number of Bacteria' },
-            margin: {
-                l: 80,
-                r: 0,
-                t: 50,
-                b: 50
-            }
-        };
-
-        Plotly.newPlot("bar", barData, layout1);
+      console.log(Winnernames); // Check the order of elements
+      console.log(Numberofwins); // Check the order of elements
+      
+  
+      // Build a Bubble Chart
+      let trace2 = {
+        x: Numberofwins,
+        y: Winnernames,
+        text: Winnernames,
+        mode: 'markers',
+        marker: {
+          size: Numberofwins,
+          color: Numberofwins,
+          colorscale: 'Earth' }
+        }; 
+  
+      // Data Array
+      let bubbleData = [trace2]
+  
+      // Layout object
+      let layout2 = {
+        title: "Top 10 Winner",
+        xaxis: { title: 'winner' },
+        yaxis: { title: 'Number of wins' },
+        margin: {
+          l: 50,
+          r: 5,
+          t: 100,
+          b: 100}};
+  
+      // Render the Bubble Chart
+      Plotly.newPlot("bubble", bubbleData, layout2);
+  
     });
-}
+  }
 
 // Function to run on page load
 function init() {
@@ -188,6 +189,7 @@ function init() {
         // Build charts and metadata for the first tournament
         buildCharts(firstTournamentID);
         buildSunburstChart();
+        buildbubleCharts();
         buildMetadata(firstTournamentID);
         updateMap(firstTournamentID);
     });
@@ -220,6 +222,7 @@ function optionChanged(newChoice) {
     buildMetadata(newChoice);
     buildCharts(newChoice);
     updateMap(newChoice);
+    buildbubleCharts(newChoice);
 }
 
 // Initialize the dashboard
