@@ -187,7 +187,6 @@ function init() {
         console.log("First tournament ID:", firstTournamentID);
 
         // Build charts and metadata for the first tournament
-        buildCharts(firstTournamentID);
         buildSunburstChart();
         buildbubleCharts();
         buildMetadata(firstTournamentID);
