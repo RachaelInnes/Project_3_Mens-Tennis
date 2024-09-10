@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Build the metadata panel
 function buildMetadata(selectedTournamentId) {
-    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/updated_main_file.json").then((data) => {
+    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/sql_extract4.json").then((data) => {
         console.log(selectedTournamentId, data);
 
         let tournament = data.find(meta => meta.TOURNAMENT_ID == selectedTournamentId);
@@ -31,7 +31,7 @@ function buildMetadata(selectedTournamentId) {
 
 // Build the Sunburst Chart
 function buildSunburstChart() {
-    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/updated_main_file.json").then(data => {
+    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/sql_extract4.json").then(data => {
         console.log('Fetched data:', data);
 
         const handedness = {};
@@ -96,9 +96,9 @@ function buildSunburstChart() {
     });
 }
 
-// Function to build both charts
+// Aria's Function to build bubble charts
 function buildbubleCharts(buble) {
-    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/updated_main_file.json").then((data) => {
+    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/sql_extract4.json").then((data) => {
   
       // Get the samples field and
       let winner = data.WINNER;
@@ -137,7 +137,7 @@ function buildbubleCharts(buble) {
       let trace2 = {
         x: Numberofwins,
         y: Winnernames,
-        text: Winnernames,
+        //text: Winnernames,
         mode: 'markers',
         marker: {
           size: Numberofwins,
@@ -151,10 +151,10 @@ function buildbubleCharts(buble) {
       // Layout object
       let layout2 = {
         title: "Top 10 Winner",
-        xaxis: { title: 'winner' },
-        yaxis: { title: 'Number of wins' },
+        xaxis: { title: 'Number of wins' },
+        yaxis: { title: '' },
         margin: {
-          l: 50,
+          l: 80,
           r: 5,
           t: 100,
           b: 100}};
@@ -167,7 +167,7 @@ function buildbubleCharts(buble) {
 
 // Function to run on page load
 function init() {
-    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/updated_main_file.json").then((data) => {
+    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/sql_extract4.json").then((data) => {
         console.log("Fetched Data:", data);
         let tournaments = data.map(d => ({ name: d.TOURNAMENT, year: d.YEAR, id: d.TOURNAMENT_ID }));
         console.log("Extracted Tournaments Data:", tournaments);
@@ -196,7 +196,7 @@ function init() {
 
 // Function to update the map with winners' nationalities
 function updateMap(selectedTournamentId) {
-    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/updated_main_file.json").then((data) => {
+    d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/sql_extract4.json").then((data) => {
         let tournamentData = data.filter(t => t.TOURNAMENT_ID == selectedTournamentId);
         
         // Clear existing markers
@@ -207,10 +207,19 @@ function updateMap(selectedTournamentId) {
         });
 
         tournamentData.forEach(tournament => {
-            // Create a marker for each winner's nationality
-            let marker = L.marker([tournament.latitude, tournament.longitude])
-                .bindPopup(`<b>${tournament.WINNER}</b><br>${tournament.WINNER_NATIONALITY}`)
-                .addTo(map);
+            // Create a green circle marker for each winner's nationality
+            let marker = L.circleMarker([tournament.latitude, tournament.longitude], {
+                color: 'green',
+                fillColor: '#32CD32', // LimeGreen color
+                fillOpacity: 0.5,
+                radius: 8
+            })
+            .bindPopup(`
+                <b>${tournament.WINNER}</b><br>
+                ${tournament.WINNER_NATIONALITY}<br>
+                <img src='http://localhost:8000/player_photos/${tournament.WINNER.replace(/ /g, "_")}.png' alt='Photo' width='100' height='100'>
+            `)
+            .addTo(map);
         });
     });
 }
