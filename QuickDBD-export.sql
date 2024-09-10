@@ -51,26 +51,28 @@ CREATE TABLE "world_coordinates" (
 SELECT * FROM "world_coordinates";
 
 SELECT
-	mg.TOURNAMENT_ID,
-    mg.YEAR,
-    mg.TOURNAMENT,
-    mg.WINNER,
-    mg.RUNNER_UP,
-    mg.WINNER_NATIONALITY,
-    mg.WINNER_ATP_RANKING,
-    mg.RUNNER_UP_ATP_RANKING,
-    mg.WINNER_LEFT_OR_RIGHT_HANDED,
-    mg.TOURNAMENT_SURFACE,
-    mg.WINNER_PRIZE,
-    c.alpha_2_code,
-    c.alpha_3_code,
-    c.en_short_name,
-    c.nationality,
-    wc.latitude,
-    wc.longitude
+	mg.*,
+    c.*,
+    wc.*
+	
 From "Mens_Tennis_Grand_Slam_Winner" mg
 LEFT JOIN "countries" c ON mg."WINNER_NATIONALITY" = c."nationality"
 LEFT JOIN "world_coordinates" wc ON c."alpha_2_code" = wc."Code";
+
+SELECT json_agg(result) AS results
+FROM (
+    SELECT
+        mg.*,
+        c.*,
+        wc.*
+    FROM "Mens_Tennis_Grand_Slam_Winner" mg
+    LEFT JOIN "countries" c ON mg."WINNER_NATIONALITY" = c."nationality"
+    LEFT JOIN "world_coordinates" wc ON c."alpha_2_code" = wc."Code"
+) result;
+
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'Mens_Tennis_Grand_Slam_Winner';
 
 
 
