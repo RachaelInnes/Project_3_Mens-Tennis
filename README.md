@@ -21,18 +21,28 @@ To use this use this dashboard, the easiest way is to click on the deployed link
 In our data visualization project, we prioritized ethical considerations to ensure the integrity and fairness of our work. When undertaking this work we were keen to ensure that we embedded ethical considerations in each part of the process. This is outlined below;
 
  ### Data Collection:
- We acknowledge that the data used is from a public dataset from  
+ We acknowledge that three csv files were used is from a public dataset from  
  Kaggle, the link is included to ensure transparency and ensure that users can     
  verify the data source. The Kaggle source confirms CC0 1.0 Universal licence,     
- and as such, means that creators have waived effectively placed this data int he 
+ and as such, means that creators have waived effectively placed this data in the 
  public domain, and as such this could be used for any purpose without 
  restriction. 
-  
+ 
+ ### Reproducing the extracted json file from PostgresSQL
+ - Import the three cvs files from the data folder to the created tables in reverse order in the .sql file as follows:
+  1. world_coordinates
+  2. countries and then
+  3. Mens_Tennis_Grand_Slam_Winner
+ - Run the merge query
+ - Run the json_agg query that outputs the merged files in json format
+ - Then double click the output json cell and select all, copy and paste into a new vs code file and save as .json type.
+ - This file was then uploaded to the GitHub repo and the URL was used with D3 library.
+
  ### Data Analysis:
- In using this data for our data visualisation project we were 
- committed to maintaining the accuracy and integrity of the data. We used a number
+ In using this data for our data visualisation project we were committed to maintaining the accuracy and integrity of the data. We used a number
   
- Data Visualisation (Design):
+ ### Data Visualisation (Design):
+
 
 
 
