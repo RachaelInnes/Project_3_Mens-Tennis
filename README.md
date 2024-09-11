@@ -29,7 +29,7 @@ In our data visualization project, we prioritized ethical considerations to ensu
  restriction. 
  
  ### Reproducing the extracted json file from PostgresSQL
- - Import the three cvs files from the data folder to the created tables in reverse order in the .sql file as follows:
+ - Import the three cvs files from the data folder to the created tables in reverse order in the .sql file or follows:
   1. world_coordinates
   2. countries and then
   3. Mens_Tennis_Grand_Slam_Winner
