@@ -40,7 +40,12 @@ Kaggle: https://www.kaggle.com/datasets/wonduk/mens-tennis-grand-slam-winner-dat
 https://en.wikipedia.org/wiki https://github.com/popovichN/grand-slam-prize-money
 
 We used a number of sources to assist with the code for the visualisation design: 
-Apache Library: this was a new library used.
+Apache Library: this was a new library used: for lines 41 to 114 a range of sources were used:
+ - how to organise the "options" with sample code from:
+    - https://echarts.apache.org/en/option.html#series-sunburst
+    - https://codepen.io/pen
+ - how the basic code structure works https://echarts.apache.org/examples/en/editor.html?c=sunburst-simple
+ - chat gpt for help in organising the data into an array of nested objects
 Gitlab: utilised code provided as part of coursework 
 https://git.bootcampcontent.com/Monash-University/MONU-VIRT-DATA-PT-05-2024-U-LOLC
 CoPilot and Chat GPT: used to assist with debugging and validate parts of the code.   
