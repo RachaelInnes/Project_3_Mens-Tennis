@@ -17,7 +17,15 @@ Through data visualisation and an interactive dashboard this project will:
 
     Engage Users: Create an engaging and interactive experience that allows users      to filter, compare, and analyze data according to their interests.
 
-To use this use this dashboard, the easiest way is to click on the deployed link https://rachaelinnes.github.io/Project_3_Mens-Tennis/. This will take the user to the dashboard 
+To use this use this dashboard, the easiest way is to click on the deployed link https://rachaelinnes.github.io/Project_3_Mens-Tennis/. This will take the user to the dashboard where they can commence filtering on tournaments. 
+
+Enhance Understanding: Offer tennis enthusiasts, analysts, and historians an easy way to explore and understand the data related to Grand Slam winners over the decades.
+
+Identify Patterns and Trends: Highlight historical trends, dominant players,       and shifts in the sport over time.
+
+Provide Insights: Deliver valuable insights into player performance, the           impact of different surfaces, and the evolution of the sport.
+
+Engage Users: Create an engaging and interactive experience that allows users      to filter, compare, and analyze data according to their interests.
 
 In our data visualization project, we prioritized ethical considerations to ensure the integrity and fairness of our work. When undertaking this work we were keen to ensure that we embedded ethical considerations in each part of the process. This is outlined below;
 
