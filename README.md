@@ -42,7 +42,7 @@ https://en.wikipedia.org/wiki https://github.com/popovichN/grand-slam-prize-mone
 ### References Source Code
 We used a number of sources to assist with the code for the visualisation design:
 
-Apache Library: this was a new library used: for lines 41 to 114 a range of sources were used:
+Apache Library: this was a new library used: for lines 41 to 114. A range of sources were used:
  - how to organise the "options" with sample code from:
     - https://echarts.apache.org/en/option.html#series-sunburst
     - https://codepen.io/pen
