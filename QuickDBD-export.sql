@@ -50,6 +50,7 @@ CREATE TABLE "world_coordinates" (
 );
 SELECT * FROM "world_coordinates";
 
+--Merge Query
 SELECT
 	mg.*,
     c.*,
@@ -58,6 +59,11 @@ SELECT
 From "Mens_Tennis_Grand_Slam_Winner" mg
 LEFT JOIN "countries" c ON mg."WINNER_NATIONALITY" = c."nationality"
 LEFT JOIN "world_coordinates" wc ON c."alpha_2_code" = wc."Code";
+
+--Output the merged data into json format
+--Double click the cell of the json data in the output
+--Select all, copy and paste into VS Code and save as .json file type
+--This file was then uploaded to the GitHub repo and the URL was used with D3 library.
 
 SELECT json_agg(result) AS results
 FROM (
