@@ -43,31 +43,39 @@ function buildSunburstChart() {
     d3.json("https://raw.githubusercontent.com/RachaelInnes/Project_3_Mens-Tennis/main/sql_extract4.json").then(data => {
         console.log('Fetched data:', data);
 
-        const handedness = {};
+        //Transform the data into a nested dictionary to create categories for the left-handed and 
+        //right-handed players to present on chart
 
-        for (const item of data) {
-            const handednessCategory = item.WINNER_LEFT_OR_RIGHT_HANDED;
-            const player = item.WINNER;
+        // define an empty dictionary called handedness
+        let handedness = {};
+        
+        for (let i = 0; i < data.length; i++) {
+            let winner = data[i].WINNER; //finds name of winner
+            let hand = data[i].WINNER_LEFT_OR_RIGHT_HANDED; //finds the winnder's handedness
+            // if key categories left and right do not exist then define it as an empty dictionary
+            handedness[hand] = handedness[hand] || {};
+            // console.log(handedness[hand])
 
-            if (handednessCategory && player) {
-                if (!handedness[handednessCategory]) {
-                    handedness[handednessCategory] = {};
-                }
-                handedness[handednessCategory][player] = (handedness[handednessCategory][player] || 0) + 1;
-            }
+            // populate dictionary categories with the winner's name as key and track wins as the value
+            handedness[hand][winner] = (handedness[hand][winner] || 0) + 1;
+            // console.log(handedness[hand][winner]);
         }
-
-        const result = Object.entries(handedness).map(([handednessCategory, players]) => ({
-            name: handednessCategory,
+        console.log(handedness);
+        
+        //Hierachical parent loop for category left or right
+        let result = Object.entries(handedness).map(([hand, players]) => ({
+            name: hand,
+            //child loop for names of winners and the segment size based on no. of wins
             children: Object.entries(players).map(([player, count]) => ({
                 name: player,
                 value: count
             }))
         }));
+        console.log(result);
 
-        const chart = echarts.init(document.getElementById('sunburst'));
+        let chart = echarts.init(document.getElementById('sunburst'));
 
-        const option = {
+        let option = {
             title: {
                 text: 'Which hand is the luckiest?',
                 left: 'center',
@@ -92,7 +100,8 @@ function buildSunburstChart() {
                         rich: {
                             b: {
                                 color: '#fff',
-                                fontSize: 12
+                                fontSize: 12,
+                                fontWeight: 'bold'
                             }
                         }
                     },
@@ -100,7 +109,6 @@ function buildSunburstChart() {
                 }
             ]
         };
-
         chart.setOption(option);
     });
 }
