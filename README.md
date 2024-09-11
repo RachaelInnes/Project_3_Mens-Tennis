@@ -20,14 +20,14 @@ To use this use this dashboard, the easiest way is to click on the deployed link
 
 In our data visualization project, we prioritized ethical considerations to ensure the integrity and fairness of our work. When undertaking this work we were keen to ensure that we embedded ethical considerations in each part of the process. This is outlined below;
 
- Data Collection: We acknowledge that the data used is from a public dataset from  
+ ### Data Collection: We acknowledge that the data used is from a public dataset from  
  Kaggle, the link is included to ensure transparency and ensure that users can     
  verify the data source. The Kaggle source confirms CC0 1.0 Universal licence,     
  and as such, means that creators have waived effectively placed this data int he 
  public domain, and as such this could be used for any purpose without 
  restriction. 
   
- Data Analysis:In using this data for our data visualisation project we were 
+ ### Data Analysis:In using this data for our data visualisation project we were 
  committed to maintaining the accuracy and integrity of the data. We used a number
   
  Data Visualisation (Design):
