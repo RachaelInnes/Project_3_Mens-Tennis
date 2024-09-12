@@ -54,3 +54,5 @@ Gitlab: utilised code provided as part of coursework
 https://git.bootcampcontent.com/Monash-University/MONU-VIRT-DATA-PT-05-2024-U-LOLC
 
 CoPilot and Chat GPT: used to assist with debugging and validate parts of the code.   
+
+Presentation Deck is [here ](https://www.canva.com/design/DAGPsrphiNA/ZyrlrRktKD0xfIBMYzd4Vg/edit)
